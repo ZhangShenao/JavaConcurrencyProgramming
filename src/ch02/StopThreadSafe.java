@@ -2,19 +2,24 @@ package ch02;
 
 import java.util.Random;
 
+
 /**
- * 调用线程的stop方法，会立即释放线程锁持有的锁，并结束线程，可能出现数据不一致的情况
+ * 通过自定义变量来结束线程
  * @author ZhangShenao
  *
  */
-public class StopThreadUnsafe {
+public class StopThreadSafe {
 	private static User user = new User();
 	private static final Random random = new Random();
 	
 	/**
+	 * 控制线程结束的标志
+	 */
+	private static volatile boolean isStop = false;
+	
+	/**
 	 * 用户类，当id和name属性相同时，表示数据是一致的
 	 * @author ZhangShenao
-	 *
 	 */
 	public static class User{
 		private int id = 0;
@@ -49,14 +54,12 @@ public class StopThreadUnsafe {
 
 		@Override
 		public void run() {
-			while (true){
+			while (!isStop){
 				synchronized(user){
 					int id = random.nextInt(100);
 					user.setId(id);
 					
 					try {
-						//线程可能在这里被stop,会直接释放锁并结束线程
-						//下面的user.setName(String.valueOf(id))无法执行,会导致数据不一致
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -67,6 +70,13 @@ public class StopThreadUnsafe {
 				
 				Thread.yield();
 			}
+		}
+		
+		/**
+		 * 安全终止线程的方法
+		 */
+		public void safeStop(){
+			isStop = true;
 		}
 	}
 	
@@ -104,8 +114,8 @@ public class StopThreadUnsafe {
 			changeThread.start();
 			Thread.sleep(150);
 			
-			//调用stop方法结束线程
-			changeThread.stop();
+			//调用自定义方法结束线程
+			changeThread.safeStop();
 			
 		}
 	}
