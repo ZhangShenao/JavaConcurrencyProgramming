@@ -2,14 +2,8 @@ package ch02;
 
 import java.util.HashMap;
 
-/**
- * 
- * <p>Description:  多线程环境下使用HashMap,可能出现线程安全问题,可使用ConcurrentHashMap</p>
- * @author ZhangShenao
- * @date 2017年3月27日 上午8:20:29
- */
 public class HashMapMultiThread {
-	private static final HashMap<String,String> map = new HashMap<>();
+	private static final HashMap<String,String> map = new HashMap<String,String>();
 
 
 	private static class AddTask implements Runnable{
