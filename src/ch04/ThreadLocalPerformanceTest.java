@@ -1,4 +1,4 @@
-package ch03;
+package ch04;
 
 import java.util.ArrayList;
 import java.util.Random;
