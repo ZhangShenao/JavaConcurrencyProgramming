@@ -12,7 +12,7 @@ public class Consumer implements WorkHandler<PCData>{
 	@Override
 	public void onEvent(PCData event) throws Exception {
 		long value = event.getValue();
-		System.out.println(Thread.currentThread().getId() + "-->" + value + " * " + value + " = " + (value * value ));
+		System.out.println("Thread:" + Thread.currentThread().getId() + "-->" + value + " * " + value + " = " + (value * value ));
 	}
 
 }

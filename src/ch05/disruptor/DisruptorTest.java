@@ -27,7 +27,7 @@ public class DisruptorTest {
 		int ringBufferSize = 1024;
 		
 		//创建Disruptor对象
-		Disruptor<PCData> disruptor = new Disruptor<>(factory, ringBufferSize, pool, 
+		Disruptor<PCData> disruptor = new Disruptor<PCData>(factory, ringBufferSize, pool, 
 				ProducerType.MULTI, new BlockingWaitStrategy());
 		
 		//设置4个消费者实例，系统会将每个消费者实例映射到一个线程中
