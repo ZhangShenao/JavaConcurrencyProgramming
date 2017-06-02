@@ -53,7 +53,6 @@ public class ConnectionPool {
 				while (pool.isEmpty()){
 					pool.wait();
 				}
-				
 				return pool.removeFirst();
 			}
 				
@@ -74,4 +73,5 @@ public class ConnectionPool {
 		}
 		
 	}
+	
 }

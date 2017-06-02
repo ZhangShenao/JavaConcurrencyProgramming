@@ -17,11 +17,10 @@ public class ConnectionDriver {
 		@Override
 		public Object invoke(Object proxy, Method method, Object[] args)
 				throws Throwable {
-			Object result = method.invoke(null, args);
 			if ("commit".equals(method.getName())){
-				TimeUnit.MILLISECONDS.sleep(100);
+				TimeUnit.MILLISECONDS.sleep(50);
 			}
-			return result;
+			return null;
 		}
 		
 	}
