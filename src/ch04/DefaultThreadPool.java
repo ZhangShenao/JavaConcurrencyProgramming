@@ -54,7 +54,6 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> 
 		int workerSize = ensureSize(initSize);
 		WORKER_QUEUE = new ArrayList<Worker>(workerSize);
 		initWorkerThread(workerSize);
-		
 	}
 	
 	/**
