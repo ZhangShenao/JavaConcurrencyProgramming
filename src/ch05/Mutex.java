@@ -20,6 +20,8 @@ public class Mutex implements Lock{
 	 */
 	private static class Sync extends AbstractQueuedSynchronizer{
 		
+		private static final long serialVersionUID = 1L;
+
 		/**
 		 * 判断当前同步状态是否被线程独占
 		 */
