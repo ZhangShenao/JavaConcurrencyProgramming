@@ -22,7 +22,7 @@ public class ExchangerTest {
 		//A录入银行流水数据
 		pool.execute(new Runnable(){
 			@Override
-			public void run() {
+			public void run() { 
 				String strA = "银行流水A";
 				
 				try {
